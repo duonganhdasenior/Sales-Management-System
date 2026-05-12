@@ -53,14 +53,15 @@ on o.orderid = od.orderid
 group by year, month
 order by year, month;
 
--- Customer Revenue
+-- Top Customer Revenue
 create or replace view vw_customer_rev as
 select customername, SUM(Quantity*SalePrice) as revenue 
 from customers c
 join orders o on c.customerid = o.customerid
 join orderdetails od on o.orderid = od.orderid
 group by customername
-order by revenue DESC;
+order by revenue DESC
+limit 5;
 
 -- Low Stock Products
 create or replace view vw_low_stock AS
@@ -112,3 +113,10 @@ where o.Status = 'Pending'
   AND o.OrderDate = CURDATE()
 order by o.OrderID ASC;
 
+-- Status Count 
+CREATE VIEW vw_order_status_count AS
+SELECT
+    Status,
+    COUNT(*) AS count
+FROM Orders
+GROUP BY Status;
