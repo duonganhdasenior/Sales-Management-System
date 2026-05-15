@@ -38,7 +38,7 @@ Customers ──< Orders >── Employees
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Component | Technology | Version |
 |---|---|---|
